@@ -18,4 +18,7 @@ export class TodosComponent implements OnInit {
     this.todoService.onToggle(id);
   }
 
+  removeTodo(id: number) {
+    this.todoService.removeTodo(id);
+  }
 }

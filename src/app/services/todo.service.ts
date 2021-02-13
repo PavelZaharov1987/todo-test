@@ -22,4 +22,12 @@ export class TodoService {
     const idx = this.todos.findIndex(todo => todo.id === id);
     this.todos[idx].completed = !this.todos[idx].completed;
   }
+
+  removeTodo(id: number) {
+    this.todos = this.todos.filter(todo => todo.id !== id);
+  }
+
+  addTodo(todo: Todo) {
+    this.todos.push(todo);
+  }
 }
