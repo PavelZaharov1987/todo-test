@@ -1,5 +1,5 @@
 <ul *ngIf="todoService.todos.length; else noTodos">
-  <li *ngFor="let todo of todoService.todos, let i = index">
+  <li *ngFor="let todo of todoService.todos, let i = index" [routerLink]="['/tasks', todo.id]">
     <span [class.done]="todo.completed">
       <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)">
       <strong>{{i + 1}}</strong>{{todo.title}}
@@ -8,6 +8,8 @@
     <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
   </li>
 </ul>
+
+<button (click)="addTodo()">Add todo</button>
 
 <ng-template #noTodos>
   <p>No todos now!</p>

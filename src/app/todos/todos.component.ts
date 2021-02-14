@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../services/todo.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-todos',
@@ -8,7 +9,10 @@ import { TodoService } from '../services/todo.service';
 })
 export class TodosComponent implements OnInit {
 
-  constructor(public todoService: TodoService) { }
+  constructor(
+    public todoService: TodoService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     console.log('hi');
@@ -20,5 +24,9 @@ export class TodosComponent implements OnInit {
 
   removeTodo(id: number) {
     this.todoService.removeTodo(id);
+  }
+
+  addTodo() {
+    this.router.navigateByUrl('tasks/new');
   }
 }
