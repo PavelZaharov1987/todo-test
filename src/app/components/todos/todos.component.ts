@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
 export class TodosComponent implements OnInit, DoCheck {
 
   public todos: Todo[] = [];
-  public todosDone: Todo[] = [];
 
   constructor(
     public todoService: TodoService,
@@ -22,7 +21,6 @@ export class TodosComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.todos = this.todoService.todos.filter(todo => todo.completed === false);
-    this.todosDone = this.todoService.todos.filter(todo => todo.completed === true);
   }
 
   onChange(id: number) {
@@ -35,5 +33,9 @@ export class TodosComponent implements OnInit, DoCheck {
 
   addTodo() {
     this.router.navigateByUrl('tasks/new');
+  }
+
+  getId(id: number) {
+    this.todoService.getId(id);
   }
 }

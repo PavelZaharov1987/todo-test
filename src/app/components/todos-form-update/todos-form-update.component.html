@@ -1,1 +1,10 @@
-<p>todos-form-update works!</p>
+<div class="change_todo">
+  <input
+    type="text"
+    placeholder="Change todo title..."
+    [(ngModel)]="title"
+    (keydown.enter)="saveTodo()"
+  >
+</div>
+<button (click)="saveTodo()">Save todo</button>
+<button (click)="turnBack()">Turn back</button>

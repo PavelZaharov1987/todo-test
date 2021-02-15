@@ -1,29 +1,14 @@
-<div class="todos">
-  <ul *ngIf="todos.length; else noTodos">
-    <li *ngFor="let todo of todos, let i = index">
-      <span [class.done]="todo.completed">
-        <span [routerLink]="['/tasks', todo.id]">
-          <strong>{{i + 1}}</strong>{{todo.title}}
-        </span>
+<ul *ngIf="todos.length; else noTodos">
+  <li *ngFor="let todo of todos, let i = index">
+    <span [class.done]="todo.completed">
+      <span [routerLink]="['/tasks', todo.id]" (click)="getId(todo.id)">
+        <strong>{{i + 1}}</strong>{{todo.title}}
       </span>
-      <button class="rm" (click)="onChange(todo.id)">&gt;</button>
-      <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
-    </li>
-  </ul>
-
-  <ul *ngIf="todosDone.length; else noTodos">
-    <li *ngFor="let todo of todosDone, let i = index">
-      <span [class.done]="todo.completed">
-        <span [routerLink]="['/tasks', todo.id]">
-          <strong>{{i + 1}}</strong>{{todo.title}}
-        </span>
-      </span>
-      <button class="rm" (click)="onChange(todo.id)">&lt;</button>
-      <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
-    </li>
-  </ul>
-</div>
-
+    </span>
+    <button class="rm" (click)="onChange(todo.id)">&gt;</button>
+    <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
+  </li>
+</ul>
 <button (click)="addTodo()">Add todo</button>
 
 <ng-template #noTodos>

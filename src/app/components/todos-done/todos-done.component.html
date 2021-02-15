@@ -1,1 +1,17 @@
-<p>todos-done works!</p>
+<ul *ngIf="todosDone.length; else noTodos">
+  <li *ngFor="let todo of todosDone, let i = index">
+    <span [class.done]="todo.completed">
+      <span>
+        <strong>{{i + 1}}</strong>{{todo.title}}
+      </span>
+    </span>
+    <button class="rm" (click)="onChange(todo.id)">&lt;</button>
+    <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
+  </li>
+</ul>
+
+<ng-template #noTodos>
+  <ul>
+    <li>No completed todos!</li>
+  </ul>
+</ng-template>
