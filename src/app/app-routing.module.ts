@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TodosComponent } from './todos/todos.component';
-import {  TodoFormComponent } from './todo-form/todo-form.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
+import {  NewTaskComponent } from './pages/new-task/new-task.component';
+import { UpdateTaskComponent } from './pages/update-task/update-task.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
-  {path: 'tasks', component: TodosComponent},
-  {path: 'tasks/new', component: TodoFormComponent},
-  {path: 'tasks/:id', component: TodoFormComponent},
+  {path: 'tasks', component: TasksComponent},
+  {path: 'tasks/new', component: NewTaskComponent},
+  {path: 'tasks/:id', component: UpdateTaskComponent},
 ];
 
 @NgModule({

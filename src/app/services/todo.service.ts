@@ -13,9 +13,9 @@ export interface Todo {
 
 export class TodoService {
   public todos: Todo[] = [
-    {id: 1, title: 'купить хлеб', completed: false, date: new Date()},
-    {id: 2, title: 'купить масло', completed: true, date: new Date()},
-    {id: 3, title: 'купить пиво', completed: false, date: new Date()},
+    {id: 1, title: 'купить хлеб', completed: false},
+    {id: 2, title: 'купить масло', completed: true},
+    {id: 3, title: 'купить пиво', completed: false},
   ]
 
   onToggle(id: number) {
@@ -28,6 +28,10 @@ export class TodoService {
   }
 
   addTodo(todo: Todo) {
-    this.todos.push(todo);
+    const newTodos = [
+      ...this.todos,
+      todo
+    ]
+    return this.todos = newTodos;
   }
 }

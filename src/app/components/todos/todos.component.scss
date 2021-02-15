@@ -1,4 +1,10 @@
+.todos {
+  display: flex;
+}
+
 ul {
+  // min-width: 50%;
+  flex: 1;
   list-style: none;
   padding: 0;
   margin: 0;

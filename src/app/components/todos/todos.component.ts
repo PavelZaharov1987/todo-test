@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TodoService } from '../services/todo.service';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { Todo, TodoService } from '../../services/todo.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -7,7 +7,10 @@ import {Router} from '@angular/router';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent implements OnInit, DoCheck {
+
+  public todos: Todo[] = [];
+  public todosDone: Todo[] = [];
 
   constructor(
     public todoService: TodoService,
@@ -15,7 +18,11 @@ export class TodosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('hi');
+  }
+
+  ngDoCheck(): void {
+    this.todos = this.todoService.todos.filter(todo => todo.completed === false);
+    this.todosDone = this.todoService.todos.filter(todo => todo.completed === true);
   }
 
   onChange(id: number) {
