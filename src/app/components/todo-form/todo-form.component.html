@@ -1,10 +1,13 @@
 <div class="new_todo">
+  <p>Добавьте новую задачу</p>
   <input
     type="text"
     placeholder="Add todo title..."
     [(ngModel)]="title"
     (keydown.enter)="addTodo()"
   >
+  <div class="btn_bottom">
+    <button class="btn btn_add" (click)="addTodo()">Добавить</button>
+    <button class="btn btn_add" (click)="turnBack()">Вернуться</button>
+  </div>
 </div>
-<button (click)="addTodo()">Add todo</button>
-<button (click)="turnBack()">Turn back</button>

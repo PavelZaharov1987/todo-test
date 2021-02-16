@@ -1,17 +1,23 @@
-<ul *ngIf="todosDone.length; else noTodos">
-  <li *ngFor="let todo of todosDone, let i = index">
-    <span [class.done]="todo.completed">
-      <span>
-        <strong>{{i + 1}}</strong>{{todo.title}}
+<div class="todo_done">
+  <p>Выполненные задачи</p>
+  <ul *ngIf="todosDone.length; else noTodos">
+    <li class="todo_done_item" *ngFor="let todo of todosDone, let i = index">
+      <div class="todo_btn">
+        <button class="btn btn_large" (click)="onChange(todo.id)">&lArr;</button>
+        <button class="btn" (click)="removeTodo(todo.id)">&#10006;</button>
+      </div>
+      <span [class.done]="todo.completed">
+        <span>
+          <strong>{{i + 1}} - </strong>{{todo.title}}
+        </span>
       </span>
-    </span>
-    <button class="rm" (click)="onChange(todo.id)">&lt;</button>
-    <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
+
 
 <ng-template #noTodos>
   <ul>
-    <li>No completed todos!</li>
+    <li class="todo_done_noItem">No completed todos!</li>
   </ul>
 </ng-template>

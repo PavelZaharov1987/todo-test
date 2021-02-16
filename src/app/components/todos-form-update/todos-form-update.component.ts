@@ -18,13 +18,10 @@ export class TodosFormUpdateComponent implements OnInit, DoCheck {
   ) { }
 
   ngOnInit(): void {
-    // this.id = this.todoService.transferId();
-    // console.log(this.id);
   }
 
   ngDoCheck() {
     this.id = this.todoService.transferId();
-    console.log(this.id);
   }
 
   saveTodo() {
@@ -34,5 +31,7 @@ export class TodosFormUpdateComponent implements OnInit, DoCheck {
 
   turnBack() {
     this.router.navigateByUrl('tasks');
+    this.todoService.changeActiveButton(true);
+    this.todoService.onActive(this.id);
   }
 }

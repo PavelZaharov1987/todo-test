@@ -24,7 +24,7 @@ export class TodoFormComponent implements OnInit {
       id: Date.now(),
       title: this.title,
       completed: false,
-      date: new Date()
+      isActive: false
     }
 
     this.todoService.addTodo(todo);
@@ -33,5 +33,6 @@ export class TodoFormComponent implements OnInit {
 
   turnBack() {
     this.router.navigateByUrl('tasks');
+    this.todoService.changeActiveButton(true);
   }
 }

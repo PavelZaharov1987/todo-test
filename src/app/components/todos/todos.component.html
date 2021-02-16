@@ -1,18 +1,29 @@
-<ul *ngIf="todos.length; else noTodos">
-  <li *ngFor="let todo of todos, let i = index">
-    <span [class.done]="todo.completed">
-      <span [routerLink]="['/tasks', todo.id]" (click)="getId(todo.id)">
-        <strong>{{i + 1}}</strong>{{todo.title}}
+<div class="todo_list">
+  <p>Список задач</p>
+  <ul *ngIf="todos.length; else noTodos">
+    <li class="todo_list_item" [class.active]="todo.isActive" *ngFor="let todo of todos, let i = index">
+      <span [class.done]="todo.completed">
+        <span>
+          <strong>{{i + 1}} - </strong>{{todo.title}}
+        </span>
       </span>
-    </span>
-    <button class="rm" (click)="onChange(todo.id)">&gt;</button>
-    <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
-  </li>
-</ul>
-<button (click)="addTodo()">Add todo</button>
+      <div class="todo_btn">
+        <div class="todo_btn_changes">
+          <button class="btn" [disabled]="!isActive" [routerLink]="['/tasks', todo.id]" (click)="getId(todo.id)">&#9998;</button>
+          <button class="btn" [disabled]="!isActive" (click)="removeTodo(todo.id)">&#10006;</button>
+        </div>
+        <button class="btn btn_large" [disabled]="!isActive" (click)="onChange(todo.id)">&rArr;</button>
+      </div>
+    </li>
+  </ul>
+  <div class="btn_bottom">
+    <button *ngIf="isActive" class="btn btn_add" (click)="addTodo()">Добавить задачу</button>
+  </div>
+</div>
+
 
 <ng-template #noTodos>
   <ul>
-    <li>No todos now!</li>
+    <li class="todo_list_noItem">No todos now!</li>
   </ul>
 </ng-template>

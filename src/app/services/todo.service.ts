@@ -4,7 +4,7 @@ export interface Todo {
   id: number,
   title: string,
   completed: boolean,
-  date?: any
+  isActive?: boolean
 }
 
 @Injectable({
@@ -19,10 +19,16 @@ export class TodoService {
   ]
 
   public idx: number = 0;
+  public isActive: boolean = true;
 
   onToggle(id: number) {
     const idx = this.todos.findIndex(todo => todo.id === id);
     this.todos[idx].completed = !this.todos[idx].completed;
+  }
+
+  onActive(id: number) {
+    const idx = this.todos.findIndex(todo => todo.id === id);
+    this.todos[idx].isActive = !this.todos[idx].isActive;
   }
 
   removeTodo(id: number) {
@@ -55,10 +61,13 @@ export class TodoService {
 
   getId(id: number) {
     this.idx = id
-    // return id;
   }
 
   transferId() {
     return this.idx;
+  }
+
+  changeActiveButton(isActive: boolean) {
+    this.isActive = isActive;
   }
 }
